@@ -1,6 +1,6 @@
 import React from 'react';
 import { Checkbox, Col, Row } from 'antd';
-import useSelect from './lib/useSelect';
+import useSelect from './hooks/useSelect';
 
 export default () => {
   const list = [1,2,3,4];

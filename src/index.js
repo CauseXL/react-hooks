@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import {HashRouter, Route, Link} from 'react-router-dom'
 import './index.css'
 
-const req = require.context('./examples', false, /\.js$/)
+const req = require.context('./examples', false, /\.tsx$/)
 const routers = req.keys().map(key => {
-  const path = '/' + key.replace(/js/g, '').split(/[./]/).filter(x => x).join('/')
+  const path = '/' + key.replace(/tsx/g, '').split(/[./]/).filter(x => x).join('/')
   return {
     path,
     component : req(key).default

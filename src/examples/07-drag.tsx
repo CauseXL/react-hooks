@@ -1,33 +1,30 @@
 import React, { useEffect, useRef, useContext } from "react";
-import "./lib/drag.css";
+import "./styles/drag.css";
 
-import useDragDrop from "./lib/useDragDrop";
+import useDragDrop from "./hooks/useDragDrop";
 
 const list = [
   {
-    src:
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586970234373&di=a665d347ed7acfed0f39aad0bb78509a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201504%2F05%2F20150405H5939_PJwYi.jpeg",
-    title: "万事屋找我"
+    src: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586970234373&di=a665d347ed7acfed0f39aad0bb78509a&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201504%2F05%2F20150405H5939_PJwYi.jpeg",
+    title: "万事屋找我",
   },
   {
     title: "吃吃吃……",
-    src:
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586970602470&di=e3071fc352ca96f73bf2e75725d3f7bf&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201208%2F31%2F20120831140113_ayLse.thumb.700_0.jpeg"
+    src: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1586970602470&di=e3071fc352ca96f73bf2e75725d3f7bf&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201208%2F31%2F20120831140113_ayLse.thumb.700_0.jpeg",
   },
   {
     title: "Egg",
-    src:
-      "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=968093909,4033932240&fm=26&gp=0.jpg"
-  }
+    src: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=968093909,4033932240&fm=26&gp=0.jpg",
+  },
 ];
 
 export default function App() {
   return <DraggableList list={list} Card={Card} />;
 }
 
-function cls(def, ...conditions) {
+function cls(def: any, ...conditions: any) {
   const list = [def];
-  conditions.forEach(cond => {
+  conditions.forEach((cond: any) => {
     if (cond[0]) {
       list.push(cond[1]);
     }
@@ -35,7 +32,7 @@ function cls(def, ...conditions) {
   return list.join(" ");
 }
 
-function Card({ title, src }) {
+function Card({ title, src }: any) {
   return (
     <div className="card">
       <img src={src} />
@@ -43,10 +40,9 @@ function Card({ title, src }) {
     </div>
   );
 }
-export function DraggableList({ list, Card }) {
-  const { dragList, createDropperProps, createDraggerProps } = useDragDrop(
-    list
-  );
+export function DraggableList({ list, Card }: any) {
+  const { dragList, createDropperProps, createDraggerProps } =
+    useDragDrop(list);
   return (
     <div>
       {dragList.map((item, i) => {
@@ -55,6 +51,7 @@ export function DraggableList({ list, Card }) {
         } else {
           return (
             <Draggable {...createDraggerProps(i)}>
+              {/* @ts-ignore */}
               <Card {...item.data} />
             </Draggable>
           );
@@ -65,11 +62,11 @@ export function DraggableList({ list, Card }) {
 }
 
 const Draggable = React.memo(
-  ({ id, eventHandlers, dragging, children, updateHeight }) => {
-    const divRef = useRef(null);
+  ({ id, eventHandlers, dragging, children, updateHeight }: any) => {
+    const divRef = useRef<any>(null);
 
     useEffect(() => {
-      updateHeight(divRef.current.clientHeight);
+      updateHeight(divRef.current!.clientHeight);
     }, []);
 
     return (
@@ -87,7 +84,7 @@ const Draggable = React.memo(
   (prev, next) => prev.dragging === next.dragging
 );
 
-function Bar({ id, dragging, heights, dragOver, eventHandlers }) {
+function Bar({ id, dragging, heights, dragOver, eventHandlers }: any) {
   if (id === dragging + 1) {
     return null;
   }
@@ -99,7 +96,7 @@ function Bar({ id, dragging, heights, dragOver, eventHandlers }) {
       <div
         className="inner"
         style={{
-          height: id === dragOver ? heights[dragging] : 0 + "px"
+          height: id === dragOver ? heights[dragging] : 0 + "px",
         }}
       />
     </div>

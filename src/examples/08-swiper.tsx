@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./lib/slider.css";
+import "./styles/slider.css";
 
 /**
  * 学习交流:882577093
@@ -7,7 +7,7 @@ import "./lib/slider.css";
  * @param {*} callback
  * @param {*} interval
  */
-function useInterval(callback, interval) {
+function useInterval(callback: any, interval: any) {
   useEffect(() => {
     const start = new Date().getTime();
     const I = setInterval(() => {
@@ -21,10 +21,10 @@ function useInterval(callback, interval) {
  * 提供实现slider的底层
  * @param {*} N
  */
-function useSlider(N, speed = 3000) {
+function useSlider(N: any, speed = 3000) {
   const [slider, setSlider] = useState(0);
-  useInterval(diff => {
-    setSlider(_ => Math.floor(diff / speed) % N);
+  useInterval((diff: any) => {
+    setSlider((_) => Math.floor(diff / speed) % N);
   }, 300);
   return slider;
 }
@@ -32,7 +32,7 @@ function useSlider(N, speed = 3000) {
 const imgs = [
   "http://5b0988e595225.cdn.sohucs.com/images/20190724/a801831af3c743a4b97e443121f44f30.jpeg",
   "https://th.bing.com/th?id=OIP.qsPu-MfQrZdhoLjWf0SDKwHaEo&pid=Api&rs=1",
-  "https://th.bing.com/th?id=OIP.R_mn8O9thXZN4aXRk5XKJgHaEo&pid=Api&rs=1"
+  "https://th.bing.com/th?id=OIP.R_mn8O9thXZN4aXRk5XKJgHaEo&pid=Api&rs=1",
 ];
 
 export default () => {
@@ -43,14 +43,14 @@ export default () => {
         className="inner"
         style={{
           width: `${imgs.length * 100}%`,
-          transform: `translateX(-${(100 * slider) / imgs.length}%)`
+          transform: `translateX(-${(100 * slider) / imgs.length}%)`,
         }}
       >
-        {imgs.map(src => {
+        {imgs.map((src) => {
           return (
             <img
               style={{
-                width: `${100 / imgs.length}%`
+                width: `${100 / imgs.length}%`,
               }}
               key={src}
               alt=""
