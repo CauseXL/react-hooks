@@ -1,4 +1,3 @@
-// eslint-disabled
 import { DependencyList, useCallback, useEffect, useState } from "react";
 import { FunctionReturningPromise, PromiseType } from "../types";
 
