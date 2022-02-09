@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useEvent } from "./hooks/useEvent";
 
 export default () => {
