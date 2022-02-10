@@ -16,7 +16,7 @@ const App = () => {
   const [sel, setSel] = useState(window.location.href.split('#').pop())
 
   return <HashRouter>
-    <ul className='menu'>
+    <ul className='menu' style={{ overflow: 'auto' }}>
       {routers.map((x, i) => {
         return <li 
           className={sel === x.path ? 'active' : ''}
