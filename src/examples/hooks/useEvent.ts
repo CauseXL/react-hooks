@@ -1,9 +1,8 @@
 import { on, off } from "examples/utils";
 import { useEffect } from "react";
 
-type EventHandler<T extends Window | Document | HTMLElement> = Parameters<
-  T["addEventListener"]
->;
+export type EventHandler<T extends Window | Document | HTMLElement> =
+  Parameters<T["addEventListener"]>;
 
 export const useEvent = <T extends Window | Document | HTMLElement>(
   name: EventHandler<T>[0],
